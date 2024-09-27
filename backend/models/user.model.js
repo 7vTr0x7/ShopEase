@@ -1,38 +1,41 @@
 const mongoose = require("mongoose");
 
-const ShopEaseUserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  addresses: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ShopEaseAddress",
+const ShopEaseUserSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
-  ],
-  cart: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ShopEaseProduct",
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
-  ],
-  wishlist: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ShopEaseProduct",
+    password: {
+      type: String,
+      required: true,
     },
-  ],
-});
+    addresses: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ShopEaseAddress",
+      },
+    ],
+    cart: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ShopEaseProduct",
+      },
+    ],
+    wishlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ShopEaseProduct",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 const ShopEaseUser = mongoose.model("ShopEaseUser", ShopEaseUserSchema);
 
