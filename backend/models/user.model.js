@@ -35,3 +35,5 @@ const ShopEaseUserSchema = new mongoose.Schema({
 });
 
 const ShopEaseUser = mongoose.model("ShopEaseUser", ShopEaseUserSchema);
+
+module.exports = ShopEaseUser;
