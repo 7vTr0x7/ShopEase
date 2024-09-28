@@ -1,9 +1,11 @@
-require("dotenv").config({ path: "D:/shopease/backend/.env" });
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "D:/shopease/backend/.env" });
 
 const mongoUrl = process.env.MONGODB;
 
-const initializeDatabase = async () => {
+export const initializeDatabase = async () => {
   try {
     const connection = await mongoose.connect(mongoUrl);
     if (connection) {
@@ -13,5 +15,3 @@ const initializeDatabase = async () => {
     console.log("Failed to connect to mongoDB");
   }
 };
-
-module.exports = { initializeDatabase };

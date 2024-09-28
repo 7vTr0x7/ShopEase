@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const { initializeDatabase } = require("./db/db.connection");
+import express from "express";
+import cors from "cors";
+import { initializeDatabase } from "./db/db.connection.js";
 
 const app = express();
 app.use(express.json());
@@ -13,3 +13,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 initializeDatabase();
+
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
+});

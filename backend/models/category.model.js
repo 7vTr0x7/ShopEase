@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ShopEaseCategorySchema = new mongoose.Schema({
   category: {
@@ -12,4 +12,4 @@ const ShopEaseCategory = mongoose.model(
   ShopEaseCategorySchema
 );
 
-module.exports = ShopEaseCategory;
+export default ShopEaseCategory;

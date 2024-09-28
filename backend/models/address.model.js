@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ShopEaseAddressSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -17,4 +17,4 @@ const ShopEaseAddress = mongoose.model(
   ShopEaseAddressSchema
 );
 
-module.exports = ShopEaseAddress;
+export default ShopEaseAddress;
