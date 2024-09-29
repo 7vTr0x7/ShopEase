@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.get("/user/:userId", getUserById);
 
+//router.route("/user/:userId").get(getUserById).post().delete() // route chaining
+
 export default router;
