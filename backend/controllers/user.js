@@ -12,3 +12,6 @@ export const getUserById = async (req, res) => {
     res.status(500).json({ error: `user not found`, error });
   }
 };
+
+export const registerUser = async (req, res) => {};
+export const loginUser = async (req, res) => {};
