@@ -15,6 +15,19 @@ export const getUserById = async (req, res) => {
   }
 };
 
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await ShopEaseUser.findOne({ email });
+    if (!user) {
+      res.json({ message: "Invalid Email or Password" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: `Failed to login User`, error });
+  }
+};
+
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -34,4 +47,3 @@ export const registerUser = async (req, res) => {
     res.status(500).json({ message: `Failed to register User`, error });
   }
 };
-export const loginUser = async (req, res) => {};
