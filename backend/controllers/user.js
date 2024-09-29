@@ -1,10 +1,6 @@
 import ShopEaseUser from "../models/user.model.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-
-import { config } from "dotenv";
-
-config({ path: "D:/shopease/backend/.env" });
+import { sendCookie } from "../utils/features.js";
 
 export const getUserById = async (req, res) => {
   try {
@@ -32,17 +28,7 @@ export const registerUser = async (req, res) => {
 
       user = await ShopEaseUser.create({ name, email, password: hashedPass });
 
-      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-
-      res
-        .status(201)
-        .cookie("token", token, {
-          httpOnly: true,
-          maxAge: 60 * 60 * 1000,
-        })
-        .json({
-          message: "Registered Successfully",
-        });
+      sendCookie(user, res, "Registered Successfully", 201);
     }
   } catch (error) {
     res.status(500).json({ message: `Failed to register User`, error });
