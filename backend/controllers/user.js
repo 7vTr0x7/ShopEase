@@ -28,7 +28,7 @@ export const registerUser = async (req, res) => {
     if (user) {
       res.json({ message: "User already exists" });
     } else {
-      const hashedPass = bcrypt.hash(password, 10);
+      const hashedPass = await bcrypt.hash(password, 10);
 
       user = await ShopEaseUser.create({ name, email, password: hashedPass });
 
