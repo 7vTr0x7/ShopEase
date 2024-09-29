@@ -1,9 +1,9 @@
 import express from "express";
-import { getUserById, loginUser, registerUser } from "../controllers/user.js";
+import { getMyProfile, loginUser, registerUser } from "../controllers/user.js";
 
 const router = express.Router();
 
-router.get("/user/:userId", getUserById);
+router.get("/user", getMyProfile);
 
 //router.route("/user/:userId").get(getUserById).post().delete() // route chaining
 

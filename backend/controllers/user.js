@@ -2,19 +2,6 @@ import ShopEaseUser from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 
-export const getUserById = async (req, res) => {
-  try {
-    const user = await ShopEaseUser.findById(req.params.userId);
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ error: "User not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: `user not found`, error });
-  }
-};
-
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -53,5 +40,15 @@ export const registerUser = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: `Failed to register User`, error });
+  }
+};
+
+export const getMyProfile = async (req, res) => {
+  try {
+    res.status(201).json({
+      user: req.user,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to get profile" });
   }
 };
