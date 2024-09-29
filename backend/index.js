@@ -16,7 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(cookieParser());
-app.use("/api", userRoutes);
+app.use("/api/users", userRoutes);
 
 initializeDatabase();
 

@@ -52,3 +52,15 @@ export const getMyProfile = async (req, res) => {
     res.status(500).json({ message: "Failed to get profile" });
   }
 };
+export const logoutUser = async (req, res) => {
+  try {
+    res
+      .status(201)
+      .cookie("token", "", { expires: new Date(Date.now()) })
+      .json({
+        user: req.user,
+      });
+  } catch (error) {
+    res.status(500).json({ success: true, message: "Failed to logout" });
+  }
+};
