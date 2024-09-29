@@ -1,5 +1,5 @@
 import express from "express";
-import ShopEaseUser from "../models/user.model";
+import ShopEaseUser from "../models/user.model.js";
 
 const router = express.Router();
 
@@ -15,3 +15,5 @@ router.get("/user/:userId", async (req, res) => {
     res.status(500).json({ error: `user not found`, error });
   }
 });
+
+export default router;
