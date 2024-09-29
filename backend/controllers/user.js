@@ -19,9 +19,17 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await ShopEaseUser.findOne({ email });
+    const user = await ShopEaseUser.findOne({ email }).select("+password");
     if (!user) {
-      res.json({ message: "Invalid Email or Password" });
+      res.status(404).json({ message: "Invalid Email or Password" });
+    } else {
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (!isMatch) {
+        res.status(404).json({ message: "Invalid Email or Password" });
+      } else {
+        sendCookie(user, res, `Welcome back, ${user.name}`, 200);
+      }
     }
   } catch (error) {
     res.status(500).json({ message: `Failed to login User`, error });
@@ -35,7 +43,7 @@ export const registerUser = async (req, res) => {
     let user = await ShopEaseUser.findOne({ email });
 
     if (user) {
-      res.json({ message: "User already exists" });
+      res.status(404).json({ message: "User already exists" });
     } else {
       const hashedPass = await bcrypt.hash(password, 10);
 
