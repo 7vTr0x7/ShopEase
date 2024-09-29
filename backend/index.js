@@ -4,8 +4,8 @@ import { initializeDatabase } from "./db/db.connection.js";
 import userRoutes from "./routes/user.js";
 
 const app = express();
+
 app.use(express.json());
-app.use("/api", userRoutes);
 
 const corsOptions = {
   origin: "*",
@@ -13,6 +13,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+app.use("/api", userRoutes);
 
 initializeDatabase();
 
