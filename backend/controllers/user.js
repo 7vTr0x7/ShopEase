@@ -33,7 +33,6 @@ export const registerUser = async (req, res) => {
       user = await ShopEaseUser.create({ name, email, password: hashedPass });
 
       const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-      console.log(token);
 
       res
         .status(201)
