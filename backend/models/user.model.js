@@ -13,6 +13,7 @@ const ShopEaseUserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
+      select: true,
       required: true,
     },
     addresses: [
