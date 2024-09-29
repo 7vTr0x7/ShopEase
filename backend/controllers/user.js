@@ -56,7 +56,11 @@ export const logoutUser = async (req, res) => {
   try {
     res
       .status(201)
-      .cookie("token", "", { expires: new Date(Date.now()) })
+      .cookie("token", "", {
+        expires: new Date(Date.now()),
+        sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+        secure: process.env.NODE_ENV === "Development" ? false : true,
+      })
       .json({ success: true, user: req.user });
   } catch (error) {
     res.status(500).json({ message: "Failed to logout" });
