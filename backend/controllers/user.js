@@ -34,7 +34,12 @@ export const registerUser = async (req, res) => {
     } else {
       const hashedPass = await bcrypt.hash(password, 10);
 
-      user = await ShopEaseUser.create({ name, email, password: hashedPass });
+      user = await ShopEaseUser.create({
+        name,
+        email,
+        password: hashedPass,
+        role: "customer",
+      });
 
       sendCookie(user, res, "Registered Successfully", 201);
     }
