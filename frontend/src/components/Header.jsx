@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../images/logo.png";
+import { IoSearch } from "react-icons/io5";
 
 const Header = () => {
   return (
@@ -7,21 +8,29 @@ const Header = () => {
       <div className="flex justify-between">
         <div className="flex items-center">
           <img alt="logo" src={logo} className="h-14" />
-          <p className="text-white text-xl font-bold cursor-pointer hover:text-purple-500">
+          <p className="text-white text-xl font-bold cursor-pointer hover:text-gray-500">
             ShopEase
           </p>
         </div>
-        <div className="flex justify-end mx-7  items-center w-full">
-          <input
-            type="text"
-            placeholder="Search"
-            className="py-1 px-3 focus:outline-none rounded-lg  w-3/12"
-          />
-        </div>
         <div className="flex  gap-10 items-center  text-lg text-white">
-          <p className="  font-bold cursor-pointer hover:text-gray-400">Explore</p>
+          <div
+            className={
+              "flex items-center  px-3 rounded-xl text-black bg-white"
+            }>
+            <input
+              type="text"
+              placeholder="Search"
+              className={"py-1 px-3 focus:outline-none rounded-lg   w-full"}
+            />
+            <IoSearch className={"text-black text-2xl"} />
+          </div>
+          <p className="  font-bold cursor-pointer hover:text-gray-400">
+            Explore
+          </p>
 
-          <p className=" font-bold cursor-pointer hover:text-gray-400">Wishlist</p>
+          <p className=" font-bold cursor-pointer hover:text-gray-400">
+            Wishlist
+          </p>
           <p className=" font-bold cursor-pointer hover:text-gray-400">Cart</p>
           <p className=" font-bold cursor-pointer hover:text-gray-400">Login</p>
         </div>
