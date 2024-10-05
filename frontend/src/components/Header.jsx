@@ -1,13 +1,9 @@
 import React from "react";
 import logo from "../images/logo.png";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { HiOutlineShoppingBag } from "react-icons/hi";
-import { CgProfile } from "react-icons/cg";
-import { FaRegHeart } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <header className="bg-gray-100 py-3 px-6">
+    <header className="bg-gray-200 py-3 px-6">
       <div className="flex justify-between">
         <div className="flex items-center">
           <img alt="logo" src={logo} className="h-14" />
@@ -15,26 +11,26 @@ const Header = () => {
             ShopEase
           </p>
         </div>
-        <div className="flex  items-center w-[400px]">
+        <div className="flex justify-end mx-7  items-center w-full">
           <input
             type="text"
             placeholder="Search"
-            className="py-1 mx-3 px-3 focus:outline-none rounded-lg  w-full"
+            className="py-1 px-3 focus:outline-none rounded-lg  w-3/12"
           />
         </div>
-        <div className="flex justify-between gap-8 items-center  ">
-          <p className=" text-3xl text-purple-400  font-bold cursor-pointer hover:text-purple-500">
-            <HiOutlineShoppingBag />
+        <div className="flex  gap-10 items-center  text-lg text-purple-500">
+          <p className="  font-bold cursor-pointer hover:text-purple-400">
+            Explore
           </p>
 
-          <p className="text-2xl text-purple-400  font-bold cursor-pointer hover:text-purple-500">
-            <FaRegHeart />
+          <p className=" font-bold cursor-pointer hover:text-purple-400">
+            Wishlist
           </p>
-          <p className="text-3xl text-purple-400  font-bold cursor-pointer hover:text-purple-500">
-            <MdOutlineShoppingCart />
+          <p className=" font-bold cursor-pointer hover:text-purple-400">
+            Cart
           </p>
-          <p className="text-3xl text-purple-400  font-bold cursor-pointer hover:text-purple-500">
-            <CgProfile />
+          <p className=" font-bold cursor-pointer hover:text-purple-400">
+            Login
           </p>
         </div>
       </div>
