@@ -4,23 +4,23 @@ import { IoSearch } from "react-icons/io5";
 
 const Header = () => {
   return (
-    <header className="bg-black opacity-90 py-3 px-6">
+    <header className="bg-white py-3 px-6">
       <div className="flex justify-between">
         <div className="flex items-center">
           <img alt="logo" src={logo} className="h-14" />
-          <p className="text-white text-xl font-bold cursor-pointer hover:text-gray-500">
+          <p className="text-black text-xl font-bold cursor-pointer hover:text-gray-500">
             ShopEase
           </p>
         </div>
-        <div className="flex  gap-10 items-center  text-lg text-white">
+        <div className="flex  gap-10 items-center  text-lg text-black">
           <div
             className={
-              "flex items-center  px-3 rounded-xl text-black bg-white"
+              "flex items-center  px-3 rounded-3xl  border-gray-200 border-2 text-black bg-white"
             }>
             <input
               type="text"
               placeholder="Search"
-              className={"py-1 px-3 focus:outline-none rounded-lg   w-full"}
+              className={"py-1 px-3  focus:outline-none rounded-lg   w-full"}
             />
             <IoSearch className={"text-black text-2xl"} />
           </div>
