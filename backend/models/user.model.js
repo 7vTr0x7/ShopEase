@@ -28,8 +28,13 @@ const ShopEaseUserSchema = new mongoose.Schema(
     ],
     cart: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "ShopEaseProduct",
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "ShopEaseProduct",
+        },
+        quantity: {
+          type: Number,
+        },
       },
     ],
     wishlist: [
