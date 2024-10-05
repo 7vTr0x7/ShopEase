@@ -26,7 +26,7 @@ const Header = () => {
             <IoSearch className={"text-black text-2xl"} />
           </div>
           <p className="  font-bold cursor-pointer hover:text-gray-400">
-            Explore
+            <Link to="/explore">Explore</Link>
           </p>
 
           <p className=" font-bold cursor-pointer hover:text-gray-400">
