@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../images/logo.png";
 import { IoSearch } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -9,7 +10,7 @@ const Header = () => {
         <div className="flex items-center">
           <img alt="logo" src={logo} className="h-14" />
           <p className="text-black text-xl font-bold cursor-pointer hover:text-gray-500">
-            ShopEase
+            <Link to="/">ShopEase</Link>
           </p>
         </div>
         <div className="flex  gap-10 items-center  text-lg text-black">
