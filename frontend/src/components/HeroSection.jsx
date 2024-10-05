@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <div className="flex items-center relative  mx-8 my-6  bg-gray-200 rounded-lg">
+    <div className="flex items-center relative  mx-8 my-6  bg-purple-200 rounded-lg">
       <div>
         <img
           alt="product"
