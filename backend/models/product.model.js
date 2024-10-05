@@ -6,10 +6,7 @@ const ShopEaseProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ShopEaseUser",
-    },
+
     imageUrl: {
       type: String,
       required: true,
@@ -42,9 +39,6 @@ const ShopEaseProductSchema = new mongoose.Schema(
     description: {
       type: String,
       required: true,
-    },
-    quantity: {
-      type: Number,
     },
   },
   { timestamps: true }
