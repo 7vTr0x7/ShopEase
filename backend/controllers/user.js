@@ -103,6 +103,7 @@ export const getCart = async (req, res) => {
     res.status(500).json({ message: "Failed to get cart" });
   }
 };
+
 export const getAddress = async (req, res) => {
   try {
     const user = req.user.populate("addresses");
@@ -114,5 +115,19 @@ export const getAddress = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: "Failed to get addresses" });
+  }
+};
+
+export const getOrders = async (req, res) => {
+  try {
+    const user = req.user.populate("orders");
+    const orders = user.orders;
+    if (orders) {
+      res.json({ message: "success", orders });
+    } else {
+      res.status(404).json({ message: "orders not Found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to get orders" });
   }
 };
