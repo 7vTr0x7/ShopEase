@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import logo from "../images/logo.png";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const user = useSelector((state) => state.user.user);
+
   return (
     <header className="bg-white py-3 px-6">
       <div className="flex justify-between">
@@ -37,8 +40,11 @@ const Header = () => {
             <Link to="/cart">Cart</Link>
           </p>
           <p className=" font-bold cursor-pointer hover:text-gray-400">
-            {" "}
-            <Link to="/login">Login</Link>
+            {user ? (
+              <Link to="/profile">Profile</Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </p>
         </div>
       </div>
