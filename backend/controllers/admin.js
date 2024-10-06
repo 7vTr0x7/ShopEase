@@ -5,7 +5,7 @@ export const getAllProducts = async (req, res) => {
     const products = await ShopEaseProduct.find();
 
     if (products.length > 0) {
-      res.json(products);
+      res.json({ message: "success", products });
     } else {
       res.status(404).json({ message: "Products not found" });
     }
@@ -16,10 +16,10 @@ export const getAllProducts = async (req, res) => {
 
 export const addProduct = async (req, res) => {
   try {
-    const products = await ShopEaseProduct.create(req.body);
+    const product = await ShopEaseProduct.create(req.body);
 
-    if (products) {
-      res.json(products);
+    if (product) {
+      res.json({ message: "Added successfully", product });
     } else {
       res.status(404).json({ message: "Product not found" });
     }
@@ -37,11 +37,25 @@ export const updateProduct = async (req, res) => {
     );
 
     if (product) {
-      res.json(product);
+      res.json({ message: "Updated successfully", product });
     } else {
       res.status(404).json({ message: "Product not found" });
     }
   } catch (error) {
     res.status(500).json({ message: "Failed to update Product " });
+  }
+};
+
+export const deleteProduct = async (req, res) => {
+  try {
+    const product = await ShopEaseProduct.findByIdAndDelete(req.params.prodId);
+
+    if (product) {
+      res.json({ message: "Deleted successfully", product });
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete Product " });
   }
 };
