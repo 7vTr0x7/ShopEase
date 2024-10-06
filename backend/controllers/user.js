@@ -15,7 +15,12 @@ export const loginUser = async (req, res) => {
       if (!isMatch) {
         res.status(404).json({ message: "Invalid Email or Password" });
       } else {
-        sendCookie(user, res, `Welcome back, ${user.name}`, 200);
+        sendCookie(
+          user,
+          res,
+          `Welcome back, ${user.role === "Admin" ? "Admin" : user.name}`,
+          200
+        );
       }
     }
   } catch (error) {
@@ -38,7 +43,7 @@ export const registerUser = async (req, res) => {
         name,
         email,
         password: hashedPass,
-        role: "customer",
+        role: "Customer",
       });
 
       sendCookie(user, res, "Registered Successfully", 201);
