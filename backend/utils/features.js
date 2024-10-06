@@ -12,8 +12,8 @@ export const sendCookie = async (user, res, message, statusCode = 200) => {
     .cookie("token", token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      sameSite: process.env.NODE_ENV === "" ? "lax" : "none",
+      secure: process.env.NODE_ENV === "" ? false : true,
     })
     .json({
       message,
