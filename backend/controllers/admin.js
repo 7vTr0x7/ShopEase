@@ -1,3 +1,4 @@
+import ShopEaseCategory from "../models/category.model.js";
 import ShopEaseProduct from "./../models/product.model.js";
 
 export const getAllProducts = async (req, res) => {
@@ -74,5 +75,18 @@ export const updateOrderStatus = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: "Failed to update order " });
+  }
+};
+export const addCategory = async (req, res) => {
+  try {
+    const category = await ShopEaseCategory.create(req.body);
+
+    if (category) {
+      res.json({ message: "Added successfully", category });
+    } else {
+      res.status(404).json({ message: "category not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to add category " });
   }
 };
