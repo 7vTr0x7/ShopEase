@@ -8,8 +8,6 @@ config({ path: "D:/shopease/backend/.env" });
 export const isAuthenticated = async (req, res, next) => {
   const { token } = req?.cookies;
 
-  console.log(token);
-
   if (!token) {
     return res.status(404).json({ message: "Login First" });
   }

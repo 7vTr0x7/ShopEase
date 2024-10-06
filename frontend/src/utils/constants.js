@@ -4,7 +4,8 @@ export const login = async (user) => {
   try {
     const res = await fetch(`http://localhost:4000/api/users/login/user`, {
       method: "POST",
-      withCredentials: true,
+      credentials: "include",
+
       headers: {
         "Content-Type": "application/json",
       },

@@ -23,21 +23,22 @@ const LoginSignup = () => {
 
   const getUser = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/users/user`);
-      console.log(res);
+      const res = await fetch(`http://localhost:4000/api/users/user`, {
+        credentials: "include",
+      });
       if (!res.ok) {
         console.log("Failed");
       }
 
       const data = await res.json();
+      console.log(data);
       if (data.message) {
         toast.error(data.message);
-      } else {
-        if (data.user) {
-          dispatch(addUser(data.user));
-          if (loggedUser.email) {
-            navigate("/");
-          }
+      }
+      if (data.user) {
+        dispatch(addUser(data.user));
+        if (loggedUser.email) {
+          navigate("/");
         }
       }
     } catch (error) {

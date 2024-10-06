@@ -17,5 +17,6 @@ export const sendCookie = async (user, res, message, statusCode = 200) => {
     })
     .json({
       message,
+      user,
     });
 };
