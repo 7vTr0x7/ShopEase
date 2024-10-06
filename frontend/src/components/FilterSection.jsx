@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-import Header from "../components/Header";
-
-import ProductCard from "../components/ProductCard";
-import FilterSection from "../components/FilterSection";
+import React, { useEffect, useState } from "react";
 
 const products = [
   {
@@ -127,60 +123,93 @@ const products = [
   },
 ];
 
-const Explore = () => {
-  const [page, setPage] = useState(1);
+const FilterSection = () => {
+  const categories =
+    products && products.map((prod) => prod.categories.subCategory);
 
-  const increasePageHandler = () => {
-    if (page < products.length / 3) {
-      setPage((prev) => prev + 1);
+  const filterSubCategories = () => {
+    const filtered = [];
+    if (categories && categories.length > 0) {
+      categories.forEach((cat) => {
+        if (!filtered.includes(cat)) {
+          filtered.push(cat);
+        }
+      });
     }
+
+    return filtered;
   };
 
-  const decreasePageHandler = () => {
-    if (page >= Math.floor(products.length / 3) && page > 1) {
-      console.log(Math.floor(products.length / 3));
-      setPage((prev) => prev - 1);
-    }
-  };
+  const filteredSubCategories = filterSubCategories();
 
   return (
-    <>
-      <Header />
-      <main className="flex my-5 mb-10">
-        <div className="w-3/12">
-          <FilterSection />
+    <div className="px-8 ">
+      <div className="flex justify-between items-center">
+        <p className="text-3xl font-bold">Filters</p>
+        <button className="border text-lg rounded-2xl border-gray-400 px-4 ">
+          Reset
+        </button>
+      </div>
+      <div className="border rounded-xl py-4 px-6 mt-6 border-gray-400">
+        <p className="text-xl font-bold">Price</p>
+        <div className="flex justify-between mt-2">
+          <label htmlFor="below200">Below $200</label>
+          <input type="checkbox" id="below200" />
         </div>
-        <div className="w-9/12 px-10">
-          <div className="grid grid-cols-3 place-items-center">
-            {products.slice(page * 3 - 3, page * 3).map((prod) => (
-              <div
-                className="w-9/12 p-4  shadow-xl rounded-lg"
-                key={prod.imageUrl}>
-                <ProductCard prod={prod} />
-              </div>
-            ))}
+        <div className="flex justify-between mt-2">
+          <label htmlFor="201To999">$201 - $999</label>
+          <input type="checkbox" id="201To999" />
+        </div>
+        <div className="flex justify-between mt-2">
+          <label htmlFor="1000To1999">$1000 - $1999</label>
+          <input type="checkbox" id="1000To1999" />
+        </div>
+        <div className="flex justify-between mt-2">
+          <label htmlFor="over2000">Over $2000</label>
+          <input type="checkbox" id="over2000" />
+        </div>
+      </div>
+      <div className="border rounded-xl py-4 px-6 mt-6 border-gray-400">
+        <p className="text-xl font-bold">Rating (min)</p>
+        <div className="input-range">
+          <div className="flex justify-between mt-2">
+            <span>1</span>
+            <span>2.5</span>
+            <span>5</span>
           </div>
-          {products && products.length > 0 && (
-            <div className="flex justify-center mt-6">
-              <button
-                className="px-4 py-2 bg-white shadow-md rounded-xl text-xl font-semibold"
-                onClick={decreasePageHandler}>
-                -
-              </button>
-              <p className="px-4 mx-4 py-2 bg-white shadow-md rounded-xl text-xl font-semibold">
-                {page}
-              </p>
-              <button
-                className="px-4 py-2 bg-white shadow-md rounded-xl text-xl font-semibold"
-                onClick={increasePageHandler}>
-                +
-              </button>
-            </div>
-          )}
+          <input
+            id="range"
+            type="range"
+            min={1}
+            max={5}
+            step={0.1}
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+           accent-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
         </div>
-      </main>
-    </>
+      </div>
+      <div className="border rounded-xl py-4 px-6 mt-6 border-gray-400">
+        <p className="text-xl font-bold">Categories</p>
+        {filteredSubCategories.map((cat) => (
+          <div key={cat} className="flex justify-between mt-2">
+            <label htmlFor={cat}>{cat}</label>
+            <input type="checkbox" id={cat} />
+          </div>
+        ))}
+      </div>
+      <div className="border rounded-xl py-4 px-6 mt-6 border-gray-400">
+        <p className="text-xl font-bold">Sort By Price</p>
+        <div className="flex justify-between mt-2">
+          <label htmlFor={"low"}>{"Low to High"}</label>
+          <input type="radio" name="sort" id={"low"} />
+        </div>
+        <div className="flex justify-between mt-2">
+          <label htmlFor={"high"}>{"High to Low"}</label>
+          <input type="radio" name="sort" id={"high"} />
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Explore;
+export default FilterSection;
