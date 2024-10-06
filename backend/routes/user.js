@@ -19,7 +19,7 @@ const router = express.Router();
 
 router.get("/user", isAuthenticated, getMyProfile);
 router.get("/products/user/wishlist/products", isAuthenticated, getWishlist);
-router.get("/products/user/cart/products", isAuthenticated, getCart);
+router.get("/products/user/cart/products/:userId", isAuthenticated, getCart);
 router.get("/address/user", isAuthenticated, getAddress);
 router.get("/order/user/orders", isAuthenticated, getOrders);
 router.get("/user/categories", isAuthenticated, getCategories);
@@ -31,7 +31,7 @@ router.post("/register/user", registerUser);
 router.post("/login/user", loginUser);
 router.get("/logout/user", logoutUser);
 
-router.post("/card/product/:prodId", addToCart);
+router.post("/cart/product/:prodId", addToCart);
 router.post("/wishlist/product/:prodId", addToWishlist);
 
 export default router;

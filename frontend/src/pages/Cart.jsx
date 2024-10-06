@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import CartItem from "../components/CartItem";
 import CheckoutSummary from "../components/CheckoutSummary";
 import Header from "../components/Header";
+import { useSelector } from "react-redux";
 
 const calculateDiscountPrice = (price, discountPercent) => {
   return price - (price * discountPercent) / 100;
 };
-
-///products/user/cart/products
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +15,8 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState(
     products.map((product) => ({ ...product, quantity: 1 }))
   );
+
+  const user = useSelector((state) => state.user.user);
 
   const handleQuantityChange = (productId, action) => {
     setCartItems((prevItems) =>
@@ -46,7 +47,7 @@ const Cart = () => {
   const fetchCart = async () => {
     try {
       const res = await fetch(
-        `https://shopease-backend.vercel.app/api/users/products/categories/user`,
+        `http://localhost:4000/api/users/products/user/cart/products/${user._id}`,
         {
           credentials: "include",
         }
@@ -58,7 +59,7 @@ const Cart = () => {
 
       const data = await res.json();
 
-      setProducts(data);
+      setProducts(data.cart);
     } catch (error) {
       console.log(`Failed to login ${error}`);
     }
@@ -66,7 +67,7 @@ const Cart = () => {
   useEffect(() => {
     fetchCart();
   }, []);
-
+  console.log(products);
   return (
     <>
       <Header />

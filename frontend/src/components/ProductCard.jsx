@@ -1,4 +1,5 @@
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineStar } from "react-icons/md";
 import { useSelector } from "react-redux";
@@ -8,7 +9,34 @@ const ProductCard = ({ prod }) => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
 
-  const addToCartHandler = async () => {};
+  const addToCartHandler = async () => {
+    ///
+    try {
+      const res = await fetch(
+        `https://shopease-backend.vercel.app/api/users/cart/product/${prod._id}`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ userId: user._id }),
+        }
+      );
+      if (!res.ok) {
+        console.log("Failed");
+        return;
+      }
+
+      const data = await res.json();
+      console.log(data);
+      if (data.message) {
+        toast.success("Added to Cart");
+      }
+    } catch (error) {
+      console.log(`Failed to login ${error}`);
+    }
+  };
 
   return (
     <div className="flex items-center bg-white flex-col rounded-lg justify-between p-4 shadow-lg transition-all duration-200 hover:shadow-xl">
@@ -39,7 +67,7 @@ const ProductCard = ({ prod }) => {
         </p>
       </div>
       <div className="mt-4 grid grid-cols-4 gap-2 w-full">
-        {user.cart.includes(prod._id) ? (
+        {user?.cart?.includes(prod._id) ? (
           <button
             onClick={() => navigate("/cart")}
             className="col-span-3 px-4 py-2 text-white bg-black hover:text-black hover:bg-gray-200 rounded-lg font-semibold transition-all duration-200">
@@ -56,6 +84,7 @@ const ProductCard = ({ prod }) => {
           <FaRegHeart className="text-black text-2xl" />
         </span>
       </div>
+      <Toaster />
     </div>
   );
 };

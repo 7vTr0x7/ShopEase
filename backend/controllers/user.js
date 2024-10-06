@@ -109,7 +109,9 @@ export const addToWishlist = async (req, res) => {
 
 export const getCart = async (req, res) => {
   try {
-    const user = req.user.populate("cart");
+    const user = await ShopEaseUser.findById(req.params.userId).populate(
+      "cart"
+    );
     const cart = user.cart;
     if (cart) {
       res.json({ message: "success", cart });
@@ -122,8 +124,9 @@ export const getCart = async (req, res) => {
 };
 export const addToCart = async (req, res) => {
   try {
-    const user = req.user;
-    user.cart = [...user.cart, req.params.prodId];
+    const user = await ShopEaseUser.findById(req.body.userId);
+
+    user.cart.push({product: req.params.prodId, quantity:0});
     await user.save();
 
     if (user) {
@@ -132,7 +135,7 @@ export const addToCart = async (req, res) => {
       res.status(404).json({ message: "cart not Found" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Failed to get cart" });
+    res.status(500).json({ message: "Failed to get cart", error });
   }
 };
 
