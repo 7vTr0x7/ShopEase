@@ -1,25 +1,32 @@
 import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineStar } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ prod }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex items-center  bg-white flex-col rounded-lg justify-between py-3 px-1">
-      <div>
-        <img className=" rounded-lg" src={prod.imageUrl} />
-        <p className="mt-3 text-lg font-semibold">
-          {prod.name.length > 16 && prod.name.slice(0, 16)}...
+    <div className="flex items-center bg-white flex-col rounded-lg justify-between p-4 shadow-lg transition-all duration-200 hover:shadow-xl">
+      <div
+        className="cursor-pointer w-full"
+        onClick={() => navigate(`/product/${prod._id}`)}>
+        <img
+          className="w-full h-48 object-cover rounded-lg transition-transform duration-200 hover:scale-105"
+          src={prod.imageUrl}
+          alt={prod.name}
+        />
+        <p className="mt-3 text-lg font-semibold text-gray-800 hover:text-gray-900">
+          {prod.name}
         </p>
-        <div className="text-sm flex items-center gap-1">
-          <span> {prod.rating}</span>
-          <span>
-            <MdOutlineStar className="text-yellow-400" />
-          </span>
-          <span className="text-sm">({prod.reviews}) reviews</span>
+        <div className="text-sm flex items-center gap-1 mt-2">
+          <span className="font-bold">{prod.rating.toFixed(1)}</span>
+          <MdOutlineStar className="text-yellow-400" />
+          <span className="text-gray-500">({prod.reviews} reviews)</span>
         </div>
-        <p className="mt-3 ">
-          <span className="line-through">${prod.price}</span>
-          <span className="mx-3 font-semibold">
+        <p className="mt-3 text-lg">
+          <span className="line-through text-gray-500">${prod.price}</span>
+          <span className="ml-3 text-green-600 font-bold">
             $
             {(prod.price - (prod.price * prod.discountPercent) / 100).toFixed(
               2
@@ -27,12 +34,12 @@ const ProductCard = ({ prod }) => {
           </span>
         </p>
       </div>
-      <div className="mt-4 grid grid-cols-4 gap-2 ">
-        <button className="px-3 py-2 text-white hover:bg-gray-600 col-span-3 bg-gray-400 rounded-lg text-xl font-bold">
+      <div className="mt-4 grid grid-cols-4 gap-2 w-full">
+        <button className="col-span-3 px-4 py-2 text-white bg-black hover:text-black hover:bg-gray-200 rounded-lg font-semibold transition-all duration-200">
           Add To Cart
         </button>
-        <span className="  flex justify-center items-center text-white col-span-1 hover:bg-gray-600  bg-gray-400  rounded-lg font-bold">
-          <FaRegHeart className="text-2xl w-full " />
+        <span className="col-span-1 flex justify-center items-center bg-gray-200 hover:bg-gray-300 rounded-lg transition-all duration-200 cursor-pointer">
+          <FaRegHeart className="text-black text-2xl" />
         </span>
       </div>
     </div>
