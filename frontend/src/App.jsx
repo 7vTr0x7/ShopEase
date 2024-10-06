@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Loading from "./components/Loading";
 import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 
 const Home = lazy(() => import("./pages/Home"));
 const Explore = lazy(() => import("./pages/Explore"));
@@ -17,14 +18,14 @@ const App = () => {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/login" element={<LoginSignup />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/product/:prodId" element={<Product />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/product/:prodId" element={<Product />} />
         </Routes>
       </Suspense>
     </Router>

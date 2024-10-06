@@ -40,11 +40,14 @@ const Header = () => {
             <Link to="/cart">Cart</Link>
           </p>
           <p className=" font-bold cursor-pointer hover:text-gray-400">
-            {user ? (
+            {user.email ? (
               <Link to="/profile">Profile</Link>
             ) : (
               <Link to="/login">Login</Link>
             )}
+          </p>
+          <p className=" font-bold cursor-pointer hover:text-gray-400">
+            {user.role === "Admin" && <Link to="/dashboard">dashboard</Link>}
           </p>
         </div>
       </div>

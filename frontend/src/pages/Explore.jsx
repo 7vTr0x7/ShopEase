@@ -3,11 +3,15 @@ import Header from "../components/Header";
 
 import ProductCard from "../components/ProductCard";
 import FilterSection from "../components/FilterSection";
+import { useDispatch, useSelector } from "react-redux";
+import { addProducts } from "../redux/slices/productSlice";
 
 const Explore = () => {
   const [page, setPage] = useState(1);
 
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.products.filteredProducts);
 
   const itemsPerPage = 6;
   const totalPages = Math.ceil(products.length / itemsPerPage);
@@ -38,7 +42,8 @@ const Explore = () => {
       }
 
       const data = await res.json();
-      setProducts(data.products);
+
+      dispatch(addProducts(data.products));
     } catch (error) {
       console.log(`Failed to login ${error}`);
     }
@@ -57,13 +62,14 @@ const Explore = () => {
         </div>
         <div className="w-9/12 px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
-            {products
-              .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-              .map((prod) => (
-                <div className="w-full" key={prod._id}>
-                  <ProductCard prod={prod} />
-                </div>
-              ))}
+            {products &&
+              products
+                .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                .map((prod) => (
+                  <div className="w-full" key={prod._id}>
+                    <ProductCard prod={prod} />
+                  </div>
+                ))}
           </div>
           {products && products.length > 0 ? (
             <div className="flex justify-center mt-6 text-xl font-bold">

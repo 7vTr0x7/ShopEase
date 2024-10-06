@@ -37,9 +37,6 @@ const LoginSignup = () => {
 
       if (data.user) {
         dispatch(addUser(data.user));
-        if (loggedUser.email) {
-          navigate("/");
-        }
       }
     } catch (error) {
       console.log(`Failed to login ${error}`);
@@ -55,6 +52,7 @@ const LoginSignup = () => {
       };
       await login(data);
       await getUser();
+      navigate("/");
     } else {
       const data = {
         name,
@@ -64,6 +62,7 @@ const LoginSignup = () => {
 
       await register(data);
       await getUser();
+      navigate("/");
     }
   };
 
