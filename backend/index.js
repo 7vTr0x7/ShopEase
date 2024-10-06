@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { initializeDatabase } from "./db/db.connection.js";
 import userRoutes from "./routes/user.js";
+import adminRoutes from "./routes/admin.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use("/api/users", userRoutes);
+app.use("/api/admin", adminRoutes);
 
 initializeDatabase();
 

@@ -17,7 +17,7 @@ export const isAuthenticated = async (req, res, next) => {
   next();
 };
 
-export const isAdmit = async (req, res, next) => {
+export const isAdmin = async (req, res, next) => {
   const { token } = req?.cookies;
 
   if (!token) {
