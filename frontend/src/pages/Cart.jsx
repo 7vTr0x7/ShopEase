@@ -22,9 +22,6 @@ const products = [
 ];
 
 // Function to calculate discounted price
-const calculateDiscountPrice = (price, discountPercent) => {
-  return price - (price * discountPercent) / 100;
-};
 
 // Product Component
 const ProductItem = ({ product, onQuantityChange }) => {
@@ -69,7 +66,6 @@ const ProductItem = ({ product, onQuantityChange }) => {
   );
 };
 
-// Checkout Summary Component
 const CheckoutSummary = ({ cartItems, calculateTotal }) => {
   const total = calculateTotal();
   const discount = cartItems.reduce(
@@ -102,7 +98,6 @@ const CheckoutSummary = ({ cartItems, calculateTotal }) => {
   );
 };
 
-// Main Cart Component
 const Cart = () => {
   const [cartItems, setCartItems] = useState(
     products.map((product) => ({ ...product, quantity: 1 }))
