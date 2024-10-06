@@ -13,7 +13,7 @@ const ProductCard = ({ prod }) => {
     ///
     try {
       const res = await fetch(
-        `https://shopease-backend.vercel.app/api/users/cart/product/${prod._id}`,
+        `http://localhost:4000/api/users/cart/product/${prod._id}`,
         {
           method: "POST",
           credentials: "include",

@@ -67,7 +67,6 @@ const Cart = () => {
   useEffect(() => {
     fetchCart();
   }, []);
-  console.log(products);
   return (
     <>
       <Header />
@@ -89,7 +88,7 @@ const Cart = () => {
 
           {/* Summary Section */}
           <CheckoutSummary
-            cartItems={cartItems}
+            cartItems={products}
             calculateTotal={calculateTotal}
           />
         </div>

@@ -109,9 +109,10 @@ export const addToWishlist = async (req, res) => {
 
 export const getCart = async (req, res) => {
   try {
-    const user = await ShopEaseUser.findById(req.params.userId).populate(
-      "cart"
-    );
+    const user = await ShopEaseUser.findById(req.params.userId).populate({
+      path: "cart.product", // Populate product field inside cart
+      model: "ShopEaseProduct", // Specify the model to populate from
+    });
     const cart = user.cart;
     if (cart) {
       res.json({ message: "success", cart });
@@ -125,8 +126,7 @@ export const getCart = async (req, res) => {
 export const addToCart = async (req, res) => {
   try {
     const user = await ShopEaseUser.findById(req.body.userId);
-
-    user.cart.push({product: req.params.prodId, quantity:0});
+    user.cart.push({ product: req.params.prodId, quantity: 0 });
     await user.save();
 
     if (user) {

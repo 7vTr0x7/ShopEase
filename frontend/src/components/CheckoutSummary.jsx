@@ -10,8 +10,12 @@ const CheckoutSummary = ({ cartItems, calculateTotal }) => {
   const discount = cartItems.reduce(
     (acc, item) =>
       acc +
-      (item.price - calculateDiscountPrice(item.price, item.discountPercent)) *
-        item.quantity,
+      (item.product.price -
+        calculateDiscountPrice(
+          item.product.price,
+          item.product.discountPercent
+        )) *
+        item.product.quantity,
     0
   );
 
