@@ -103,3 +103,16 @@ export const getCart = async (req, res) => {
     res.status(500).json({ message: "Failed to get cart" });
   }
 };
+export const getAddress = async (req, res) => {
+  try {
+    const user = req.user.populate("addresses");
+    const addresses = user.addresses;
+    if (addresses) {
+      res.json({ message: "success", addresses });
+    } else {
+      res.status(404).json({ message: "addresses not Found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to get addresses" });
+  }
+};

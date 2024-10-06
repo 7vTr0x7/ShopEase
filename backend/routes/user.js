@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getCart,
   getMyProfile,
   getWishlist,
   loginUser,
@@ -13,6 +14,7 @@ const router = express.Router();
 router.get("/user", isAuthenticated, getMyProfile);
 router.get("/products/user/wishlist/products", isAuthenticated, getWishlist);
 router.get("/products/user/cart/products", isAuthenticated, getCart);
+router.get("/address/user", isAuthenticated, getAddress);
 
 //router.route("/user/:userId").get(getUserById).post().delete() // route chaining
 
