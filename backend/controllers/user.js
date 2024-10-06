@@ -76,3 +76,16 @@ export const logoutUser = async (req, res) => {
     res.status(500).json({ message: "Failed to logout" });
   }
 };
+export const getWishlist = async (req, res) => {
+  try {
+    const user = req.user.populate("wishlist");
+    const wishlist = user.wishlist;
+    if (wishlist) {
+      res.json({ message: "success", wishlist });
+    } else {
+      res.status(404).json({ message: "Wishlist not Found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to get wishlist" });
+  }
+};
