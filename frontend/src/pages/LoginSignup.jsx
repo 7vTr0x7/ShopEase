@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { addUser } from "../redux/slices/userSlice";
-import { login } from "../utils/constants";
+import { login, register } from "../utils/constants";
 
 const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -54,6 +54,15 @@ const LoginSignup = () => {
         password,
       };
       await login(data);
+      await getUser();
+    } else {
+      const data = {
+        name,
+        email,
+        password,
+      };
+
+      await register(data);
       await getUser();
     }
   };

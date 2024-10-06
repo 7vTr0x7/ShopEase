@@ -28,3 +28,32 @@ export const login = async (user) => {
     console.log(`Failed to login ${error}`);
   }
 };
+
+export const register = async (user) => {
+  try {
+    const res = await fetch(
+      `https://shopease-backend.vercel.app/api/users/register/user`,
+      {
+        method: "POST",
+        credentials: "include",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    );
+    if (!res.ok) {
+      console.log("Failed");
+      return;
+    }
+
+    const data = await res.json();
+    if (data.message) {
+      toast.success(data.message);
+      return data;
+    }
+  } catch (error) {
+    console.log(`Failed to register ${error}`);
+  }
+};
