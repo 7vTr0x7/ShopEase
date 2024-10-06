@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "./Header";
+import Header from "../components/Header";
 
 const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -23,7 +23,7 @@ const LoginSignup = () => {
               </label>
               <input
                 type="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none "
                 required
               />
             </div>
@@ -33,7 +33,7 @@ const LoginSignup = () => {
               </label>
               <input
                 type="password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none "
                 required
               />
             </div>
@@ -44,14 +44,14 @@ const LoginSignup = () => {
                 </label>
                 <input
                   type="password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none "
                   required
                 />
               </div>
             )}
             <button
               type="submit"
-              className="w-full px-4 py-2 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+              className="w-full px-4 py-2 mt-4 text-white bg-gray-900 rounded-md hover:bg-gray-700 focus:outline-none ">
               {isLogin ? "Login" : "Sign Up"}
             </button>
           </form>
@@ -61,7 +61,7 @@ const LoginSignup = () => {
                 Don’t have an account?{" "}
                 <button
                   onClick={toggleForm}
-                  className="text-blue-600 hover:underline">
+                  className="text-black hover:underline">
                   Sign Up
                 </button>
               </>
@@ -70,7 +70,7 @@ const LoginSignup = () => {
                 Already have an account?{" "}
                 <button
                   onClick={toggleForm}
-                  className="text-blue-600 hover:underline">
+                  className="text-black  hover:underline">
                   Login
                 </button>
               </>

@@ -6,7 +6,7 @@ import Explore from "./pages/Explore";
 import Product from "./pages/Product";
 import Wishlist from "./pages/Wishlist";
 import Cart from "./pages/Cart";
-import LoginSignup from "./components/LoginSignup";
+import LoginSignup from "./pages/LoginSignup";
 const App = () => {
   return (
     <>
