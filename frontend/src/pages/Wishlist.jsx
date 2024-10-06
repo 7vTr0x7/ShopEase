@@ -24,12 +24,16 @@ const Wishlist = () => {
   return (
     <>
       <Header />
-      <div className="flex gap-3 justify-center mt-10">
-        {products.map((prod) => (
-          <div className="" key={prod._id}>
-            <ProductCard prod={prod} />
-          </div>
-        ))}
+      <div>
+        <h1 className="text-3xl text-center font-bold mb-6">WISHLIST</h1>
+
+        <div className="flex gap-3 justify-center mt-10">
+          {products.map((prod) => (
+            <div className="" key={prod._id}>
+              <ProductCard prod={prod} />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

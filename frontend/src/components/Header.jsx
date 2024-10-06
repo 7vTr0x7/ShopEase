@@ -32,7 +32,10 @@ const Header = () => {
           <p className=" font-bold cursor-pointer hover:text-gray-400">
             <Link to="/wishlist">Wishlist</Link>
           </p>
-          <p className=" font-bold cursor-pointer hover:text-gray-400">Cart</p>
+          <p className=" font-bold cursor-pointer hover:text-gray-400">
+            {" "}
+            <Link to="/cart">Cart</Link>
+          </p>
           <p className=" font-bold cursor-pointer hover:text-gray-400">Login</p>
         </div>
       </div>

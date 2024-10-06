@@ -32,7 +32,7 @@ const Product = () => {
     <>
       <Header />
       <main className="flex justify-center mt-10 w-full h-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-10/12 p-5 bg-white shadow-md rounded-md">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-10/12 p-5 bg-white rounded-md">
           <div className="flex justify-center">
             <img
               className="rounded-lg h-80 w-80 object-cover"
@@ -77,11 +77,11 @@ const Product = () => {
                 {product.availability ? "In Stock" : "Out of Stock"}
               </p>
             </div>
-            <div className="flex gap-4 mt-5">
-              <button className="bg-gray-950 text-xl font-bold hover:text-black  text-white py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300">
+            <div className="flex gap-4 mt-5  ">
+              <button className="bg-gray-950 uppercase text-xl font-bold hover:text-black  text-white py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300">
                 Add To Cart
               </button>
-              <button className="bg-gray-400  text-xl font-bold text-white py-2 px-4 rounded-md hover:bg-gray-600 transition duration-300">
+              <button className="bg-gray-400 uppercase text-xl font-bold text-white py-2 px-4 rounded-md hover:bg-gray-600 transition duration-300">
                 Add to Whishlist
               </button>
             </div>
