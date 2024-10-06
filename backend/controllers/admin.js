@@ -59,3 +59,20 @@ export const deleteProduct = async (req, res) => {
     res.status(500).json({ message: "Failed to delete Product " });
   }
 };
+
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const order = await ShopEaseProduct.findById(req.params.orderId);
+    order.orderStatus = status;
+    await order.save();
+
+    if (order) {
+      res.json({ message: "Status Updated", order });
+    } else {
+      res.status(404).json({ message: "order not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update order " });
+  }
+};

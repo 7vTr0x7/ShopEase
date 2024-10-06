@@ -2,11 +2,14 @@ import express from "express";
 import { isAdmin } from "../middlewares/auth.js";
 import {
   addProduct,
+  deleteProduct,
   getAllProducts,
   updateProduct,
 } from "../controllers/admin.js";
 
 const router = express.Router();
+
+router.post("/order/status/:orderId", isAdmin, updateOrderStatus);
 
 router.get("/products", isAdmin, getAllProducts);
 router.post("/products/product", isAdmin, addProduct);
