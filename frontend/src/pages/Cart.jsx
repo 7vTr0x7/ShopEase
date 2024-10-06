@@ -1,5 +1,5 @@
 // Cart.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartItem from "../components/CartItem";
 import CheckoutSummary from "../components/CheckoutSummary";
 import Header from "../components/Header";
@@ -8,7 +8,11 @@ const calculateDiscountPrice = (price, discountPercent) => {
   return price - (price * discountPercent) / 100;
 };
 
+///products/user/cart/products
+
 const Cart = () => {
+  const [products, setProducts] = useState([]);
+
   const [cartItems, setCartItems] = useState(
     products.map((product) => ({ ...product, quantity: 1 }))
   );
@@ -38,6 +42,30 @@ const Cart = () => {
       0
     );
   };
+
+  const fetchCart = async () => {
+    try {
+      const res = await fetch(
+        `https://shopease-backend.vercel.app/api/users/products/categories/user`,
+        {
+          credentials: "include",
+        }
+      );
+      if (!res.ok) {
+        console.log("Failed");
+        return;
+      }
+
+      const data = await res.json();
+
+      setProducts(data);
+    } catch (error) {
+      console.log(`Failed to login ${error}`);
+    }
+  };
+  useEffect(() => {
+    fetchCart();
+  }, []);
 
   return (
     <>

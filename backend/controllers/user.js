@@ -94,10 +94,11 @@ export const getWishlist = async (req, res) => {
 
 export const addToWishlist = async (req, res) => {
   try {
-    const user = req.user.populate("wishlist");
-    const wishlist = user.wishlist;
-    if (wishlist) {
-      res.json({ message: "success", wishlist });
+    const user = req.user;
+    user.wishlist = [...user.wishlist, req.params.prodId];
+    await user.save();
+    if (user) {
+      res.json({ message: "success" });
     } else {
       res.status(404).json({ message: "Wishlist not Found" });
     }
@@ -108,11 +109,10 @@ export const addToWishlist = async (req, res) => {
 
 export const getCart = async (req, res) => {
   try {
-    const user = req.user;
-    user.wishlist = [...user.wishlist, req.params.prodId];
-    await user.save();
-    if (user) {
-      res.json({ message: "success" });
+    const user = req.user.populate("cart");
+    const cart = user.cart;
+    if (cart) {
+      res.json({ message: "success", cart });
     } else {
       res.status(404).json({ message: "cart not Found" });
     }
