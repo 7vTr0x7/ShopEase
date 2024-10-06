@@ -1,5 +1,6 @@
 import React from "react";
 import ProductCard from "../components/ProductCard";
+import Header from "../components/Header";
 const products = [
   {
     _id: "1",
@@ -21,13 +22,16 @@ const products = [
 
 const Wishlist = () => {
   return (
-    <div className="flex justify-center mt-10">
-      {products.map((prod) => {
-        <div className="w-full" key={prod._id}>
-          <ProductCard prod={prod} />
-        </div>;
-      })}
-    </div>
+    <>
+      <Header />
+      <div className="flex gap-3 justify-center mt-10">
+        {products.map((prod) => (
+          <div className="" key={prod._id}>
+            <ProductCard prod={prod} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
