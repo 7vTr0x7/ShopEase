@@ -1,6 +1,7 @@
 import express from "express";
 import { isAdmin } from "../middlewares/auth.js";
 import {
+  addCategory,
   addProduct,
   deleteProduct,
   getAllProducts,
