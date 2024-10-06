@@ -2,15 +2,18 @@ import toast from "react-hot-toast";
 
 export const login = async (user) => {
   try {
-    const res = await fetch(`http://localhost:4000/api/users/login/user`, {
-      method: "POST",
-      credentials: "include",
+    const res = await fetch(
+      `https://shopease-backend.vercel.app/api/users/login/user`,
+      {
+        method: "POST",
+        credentials: "include",
 
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    );
     if (!res.ok) {
       console.log("Failed");
       return;

@@ -27,7 +27,7 @@ const Explore = () => {
   const fetchProducts = async () => {
     try {
       const res = await fetch(
-        `http://localhost:4000/api/users//products/categories/user`,
+        `https://shopease-backend.vercel.app/api/users//products/categories/user`,
         {
           credentials: "include",
         }

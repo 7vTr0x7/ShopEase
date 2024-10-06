@@ -6,7 +6,7 @@ const Categories = () => {
   const fetchCategories = async () => {
     try {
       const res = await fetch(
-        `http://localhost:4000/api/users/user/categories`,
+        `https://shopease-backend.vercel.app/api/users/user/categories`,
         {
           credentials: "include",
         }

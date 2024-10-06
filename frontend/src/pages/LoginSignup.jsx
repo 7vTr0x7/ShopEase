@@ -23,9 +23,12 @@ const LoginSignup = () => {
 
   const getUser = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/users/user`, {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `https://shopease-backend.vercel.app/api/users/user`,
+        {
+          credentials: "include",
+        }
+      );
       if (!res.ok) {
         console.log("Failed");
       }
