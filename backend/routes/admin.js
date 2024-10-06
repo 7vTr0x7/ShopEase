@@ -4,6 +4,7 @@ import {
   addProduct,
   deleteProduct,
   getAllProducts,
+  updateOrderStatus,
   updateProduct,
 } from "../controllers/admin.js";
 
