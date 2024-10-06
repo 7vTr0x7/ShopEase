@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 const Home = lazy(() => import("./pages/Home"));
 const Explore = lazy(() => import("./pages/Explore"));
@@ -13,12 +14,14 @@ const App = () => {
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
-          <Route path="/product/:prodId" element={<Product />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/product/:prodId" element={<Product />} />
+          </Route>
         </Routes>
       </Suspense>
     </Router>
