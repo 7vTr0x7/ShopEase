@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const calculateDiscountPrice = (price, discountPercent) => {
   return price - (price * discountPercent) / 100;
@@ -14,25 +15,69 @@ const CheckoutSummary = ({ cartItems, calculateTotal }) => {
     0
   );
 
+  const deliveryCharge = 5.99; // Example delivery charge, adjust as needed
+
   return (
-    <div className="border rounded-lg p-6 bg-white shadow-sm">
-      <h2 className="text-2xl font-semibold mb-4">Summary</h2>
-      <div className="flex justify-between mb-2">
-        <span>Subtotal</span>
-        <span>${total.toFixed(2)}</span>
-      </div>
-      <div className="flex justify-between mb-2">
-        <span>Discount</span>
-        <span>${discount.toFixed(2)}</span>
-      </div>
-      <div className="flex justify-between font-bold text-lg mb-4">
-        <span>Total</span>
-        <span>${total.toFixed(2)}</span>
-      </div>
-      <button className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors">
-        Proceed to Checkout
-      </button>
-    </div>
+    <>
+      {cartItems.length > 0 && (
+        <div className="bg-white rounded-lg shadow-md p-4">
+          <p className="font-bold text-xl mb-4">Price Details</p>
+          <hr />
+          <div className="flex justify-between">
+            <span className="text-lg font-semibold">
+              Price (
+              {`${cartItems.length} ${cartItems.length > 1 ? "Items" : "item"}`}
+              )
+            </span>
+            <span className="text-lg font-semibold">${total.toFixed(2)}</span>
+          </div>
+
+          {discount > 0 && (
+            <div className="flex justify-between my-2">
+              <span className="text-lg font-semibold">Discount</span>
+              <span className="text-lg font-semibold">
+                ${discount.toFixed(2)}
+              </span>
+            </div>
+          )}
+
+          <div className="flex justify-between mb-2">
+            <span className="text-lg font-semibold">Delivery Charges</span>
+            <span className="text-lg font-semibold">
+              ${deliveryCharge.toFixed(2)}
+            </span>
+          </div>
+
+          <hr />
+
+          <div className="flex justify-between mb-1">
+            <span className="font-bold text-lg">Total Amount</span>
+            <span className="text-lg font-semibold">
+              ${(total + deliveryCharge).toFixed(2)}
+            </span>
+          </div>
+          <hr />
+
+          <p className="text-lg font-semibold">
+            You Will Save ${discount.toFixed(2)} on This Order
+          </p>
+
+          <button className="btn bg-indigo-600 text-white fw-bold w-full rounded-lg py-2 hover:bg-indigo-700 transition-colors mt-4">
+            <Link
+              to="/checkout"
+              className="nav-link"
+              state={{
+                cartItems,
+                total,
+                discount,
+                deliveryCharge,
+              }}>
+              Place Order
+            </Link>
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
