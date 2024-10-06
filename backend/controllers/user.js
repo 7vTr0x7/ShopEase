@@ -1,6 +1,7 @@
 import ShopEaseUser from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
+import ShopEaseCategory from "../models/category.model.js";
 
 export const loginUser = async (req, res) => {
   try {
@@ -129,5 +130,17 @@ export const getOrders = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: "Failed to get orders" });
+  }
+};
+export const getCategories = async (req, res) => {
+  try {
+    const categories = await ShopEaseCategory.find();
+    if (categories.length > 0) {
+      res.json({ message: "success", categories });
+    } else {
+      res.status(404).json({ message: "categories not Found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to get categories" });
   }
 };
