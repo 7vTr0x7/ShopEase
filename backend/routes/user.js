@@ -11,7 +11,8 @@ import { isAuthenticated } from "../middlewares/auth.js";
 const router = express.Router();
 
 router.get("/user", isAuthenticated, getMyProfile);
-router.get("/products/user/wishlist", isAuthenticated, getWishlist);
+router.get("/products/user/wishlist/products", isAuthenticated, getWishlist);
+router.get("/products/user/cart/products", isAuthenticated, getCart);
 
 //router.route("/user/:userId").get(getUserById).post().delete() // route chaining
 

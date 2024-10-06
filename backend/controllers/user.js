@@ -89,3 +89,17 @@ export const getWishlist = async (req, res) => {
     res.status(500).json({ message: "Failed to get wishlist" });
   }
 };
+
+export const getCart = async (req, res) => {
+  try {
+    const user = req.user.populate("cart");
+    const cart = user.cart;
+    if (cart) {
+      res.json({ message: "success", cart });
+    } else {
+      res.status(404).json({ message: "cart not Found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Failed to get cart" });
+  }
+};
