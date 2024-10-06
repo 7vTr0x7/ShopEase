@@ -62,7 +62,7 @@ const CheckoutSummary = ({ cartItems, calculateTotal }) => {
             You Will Save ${discount.toFixed(2)} on This Order
           </p>
 
-          <button className="btn bg-indigo-600 text-white fw-bold w-full rounded-lg py-2 hover:bg-indigo-700 transition-colors mt-4">
+          <button className="btn bg-gray-900 text-white fw-bold w-full rounded-lg py-2 hover:bg-gray-600 transition-colors mt-4">
             <Link
               to="/checkout"
               className="nav-link"
