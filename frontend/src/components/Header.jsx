@@ -36,7 +36,10 @@ const Header = () => {
             {" "}
             <Link to="/cart">Cart</Link>
           </p>
-          <p className=" font-bold cursor-pointer hover:text-gray-400">Login</p>
+          <p className=" font-bold cursor-pointer hover:text-gray-400">
+            {" "}
+            <Link to="/login">Login</Link>
+          </p>
         </div>
       </div>
     </header>
