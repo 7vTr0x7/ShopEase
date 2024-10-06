@@ -1,5 +1,7 @@
 import express from "express";
 import {
+  addToCart,
+  addToWishlist,
   getAddress,
   getAllProducts,
   getCart,
@@ -28,5 +30,8 @@ router.get("/products/categories/user", isAuthenticated, getAllProducts);
 router.post("/register/user", registerUser);
 router.post("/login/user", loginUser);
 router.get("/logout/user", logoutUser);
+
+router.post("/card/product/:prodId", addToCart);
+router.post("/wishlist/product/:prodId", addToWishlist);
 
 export default router;
