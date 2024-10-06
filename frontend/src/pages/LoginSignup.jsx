@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
+import { Toaster } from "react-hot-toast";
 
 const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -51,6 +56,7 @@ const LoginSignup = () => {
             )}
             <button
               type="submit"
+              onClick={submitHandler}
               className="w-full px-4 py-2 mt-4 text-white bg-gray-900 rounded-md hover:bg-gray-700 focus:outline-none ">
               {isLogin ? "Login" : "Sign Up"}
             </button>
@@ -78,6 +84,7 @@ const LoginSignup = () => {
           </p>
         </div>
       </div>
+      <Toaster />
     </>
   );
 };

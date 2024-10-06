@@ -3,6 +3,7 @@ import {
   getAddress,
   getCart,
   getMyProfile,
+  getOrders,
   getWishlist,
   loginUser,
   logoutUser,
