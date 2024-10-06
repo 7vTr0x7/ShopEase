@@ -1,16 +1,17 @@
-import React from "react";
-import Home from "./pages/Home";
-
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Explore from "./pages/Explore";
-import Product from "./pages/Product";
-import Wishlist from "./pages/Wishlist";
-import Cart from "./pages/Cart";
-import LoginSignup from "./pages/LoginSignup";
+
+const Home = lazy(() => import("./pages/Home"));
+const Explore = lazy(() => import("./pages/Explore"));
+const Product = lazy(() => import("./pages/Product"));
+const Wishlist = lazy(() => import("./pages/Wishlist"));
+const Cart = lazy(() => import("./pages/Cart"));
+const LoginSignup = lazy(() => import("./pages/LoginSignup"));
+
 const App = () => {
   return (
-    <>
-      <Router>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
@@ -19,8 +20,8 @@ const App = () => {
           <Route path="/login" element={<LoginSignup />} />
           <Route path="/product/:prodId" element={<Product />} />
         </Routes>
-      </Router>
-    </>
+      </Suspense>
+    </Router>
   );
 };
 
