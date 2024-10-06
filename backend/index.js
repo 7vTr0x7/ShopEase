@@ -15,8 +15,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 app.use(cookieParser());
+
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 

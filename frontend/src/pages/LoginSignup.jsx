@@ -1,16 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { Toaster } from "react-hot-toast";
+import { addUser } from "../redux/slices/userSlice";
+import { login } from "../utils/constants";
 
 const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const loggedUser = useSelector((state) => state.user.user);
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
 
-  const submitHandler = (e) => {
+  const getUser = async () => {
+    try {
+      const res = await fetch(`http://localhost:4000/api/users/user`);
+      console.log(res);
+      if (!res.ok) {
+        console.log("Failed");
+      }
+
+      const data = await res.json();
+      if (data.message) {
+        toast.error(data.message);
+      } else {
+        if (data.user) {
+          dispatch(addUser(data.user));
+          if (loggedUser.email) {
+            navigate("/");
+          }
+        }
+      }
+    } catch (error) {
+      console.log(`Failed to login ${error}`);
+    }
+  };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
+    if (isLogin) {
+      const data = {
+        email,
+        password,
+      };
+      await login(data);
+      await getUser();
+    }
   };
 
   return (
@@ -22,12 +66,28 @@ const LoginSignup = () => {
             {isLogin ? "Login" : "Sign Up"}
           </h2>
           <form>
+            {!isLogin && (
+              <div className="mb-4">
+                <label className="block mb-2 text-sm font-medium text-gray-700">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none "
+                  required
+                />
+              </div>
+            )}
             <div className="mb-4">
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Email
               </label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none "
                 required
               />
@@ -38,22 +98,13 @@ const LoginSignup = () => {
               </label>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none "
                 required
               />
             </div>
-            {!isLogin && (
-              <div className="mb-4">
-                <label className="block mb-2 text-sm font-medium text-gray-700">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none "
-                  required
-                />
-              </div>
-            )}
+
             <button
               type="submit"
               onClick={submitHandler}
