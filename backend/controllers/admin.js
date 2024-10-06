@@ -77,6 +77,7 @@ export const updateOrderStatus = async (req, res) => {
     res.status(500).json({ message: "Failed to update order " });
   }
 };
+
 export const addCategories = async (req, res) => {
   try {
     const categories = [];

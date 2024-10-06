@@ -31,10 +31,7 @@ const LoginSignup = () => {
       }
 
       const data = await res.json();
-      console.log(data);
-      if (data.message) {
-        toast.error(data.message);
-      }
+
       if (data.user) {
         dispatch(addUser(data.user));
         if (loggedUser.email) {

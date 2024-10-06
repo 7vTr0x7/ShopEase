@@ -1,7 +1,7 @@
 import express from "express";
 import { isAdmin } from "../middlewares/auth.js";
 import {
-  addCategory,
+  addCategories,
   addProduct,
   deleteProduct,
   getAllProducts,
@@ -12,7 +12,7 @@ import {
 const router = express.Router();
 
 router.post("/order/status/:orderId", isAdmin, updateOrderStatus);
-router.post("/categories/category", isAdmin, addCategory);
+router.post("/categories/category", isAdmin, addCategories);
 
 router.get("/products", isAdmin, getAllProducts);
 router.post("/products/product", isAdmin, addProduct);
