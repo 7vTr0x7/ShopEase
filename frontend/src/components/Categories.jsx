@@ -17,10 +17,7 @@ const categories = [
     categoryImageUrl: "https://picsum.photos/id/1025/200/200",
     name: "Books",
   },
-  {
-    categoryImageUrl: "https://picsum.photos/id/1012/200/200",
-    name: "Beauty ",
-  },
+
   {
     categoryImageUrl: "https://picsum.photos/id/1016/200/200",
     name: "Sports",
@@ -29,17 +26,24 @@ const categories = [
 
 const Categories = () => {
   return (
-    <div className="my-8 px-28 flex  justify-between items-center flex-wrap w-full">
-      {categories.map((cat) => (
-        <div className=" bg-gray-100 mt-6 rounded-lg " key={cat.name}>
-          <div className="flex   py-10  px-16 flex-col justify-between ">
-            <img className="" alt={cat.name} src={cat.categoryImageUrl} />
-            <p className="text-md mt-4 bg-white shadow-lg py-2 rounded-lg font-semibold text-center">
+    <div className="my-6">
+      <p className="px-20 font-semibold text-lg">Categories</p>
+      <div className=" px-20  flex flex-wrap gap-1 justify-between">
+        {categories.map((cat) => (
+          <div
+            key={cat.name}
+            className="flex p-3 rounded-lg shadow-xl bg-gray-100  mt-6 flex-col items-center justify-center  ">
+            <img
+              className="rounded-lg w-9/12"
+              alt={cat.name}
+              src={cat.categoryImageUrl}
+            />
+            <p className="w-full text-md mt-4 bg-white shadow-lg py-2 rounded-lg font-semibold text-center">
               {cat.name}
             </p>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
