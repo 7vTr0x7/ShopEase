@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 
-import { MdOutlineStar } from "react-icons/md";
-import { FaRegHeart } from "react-icons/fa";
 import ProductCard from "../components/ProductCard";
 
 const products = [
@@ -51,19 +49,94 @@ const products = [
     description:
       "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
   },
+  {
+    name: "Samsung 65-Inch QLED 4K TV",
+    imageUrl: "https://picsum.photos/id/1012/200/200",
+    price: 1299,
+    discountPercent: 15,
+    rating: 4.7,
+    reviews: 400,
+    categories: {
+      category: "Electronics",
+      subCategory: "Televisions",
+    },
+    availability: true,
+    description:
+      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
+  },
+  {
+    name: "Samsung 65-Inch QLED 4K TV",
+    imageUrl: "https://picsum.photos/id/1012/200/200",
+    price: 1299,
+    discountPercent: 15,
+    rating: 4.7,
+    reviews: 400,
+    categories: {
+      category: "Electronics",
+      subCategory: "Televisions",
+    },
+    availability: true,
+    description:
+      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
+  },
+  {
+    name: "Samsung 65-Inch QLED 4K TV",
+    imageUrl: "https://picsum.photos/id/1012/200/200",
+    price: 1299,
+    discountPercent: 15,
+    rating: 4.7,
+    reviews: 400,
+    categories: {
+      category: "Electronics",
+      subCategory: "Televisions",
+    },
+    availability: true,
+    description:
+      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
+  },
+  {
+    name: "Samsung 65-Inch QLED 4K TV",
+    imageUrl: "https://picsum.photos/id/1012/200/200",
+    price: 1299,
+    discountPercent: 15,
+    rating: 4.7,
+    reviews: 400,
+    categories: {
+      category: "Electronics",
+      subCategory: "Televisions",
+    },
+    availability: true,
+    description:
+      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
+  },
+  {
+    name: "Samsung 65-Inch QLED 4K TV",
+    imageUrl: "https://picsum.photos/id/1012/200/200",
+    price: 1299,
+    discountPercent: 15,
+    rating: 4.7,
+    reviews: 400,
+    categories: {
+      category: "Electronics",
+      subCategory: "Televisions",
+    },
+    availability: true,
+    description:
+      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
+  },
 ];
 
 const Explore = () => {
   const [page, setPage] = useState(1);
 
   const increasePageHandler = () => {
-    if (page < products.length / 6) {
+    if (page < products.length / 3) {
       setPage((prev) => prev + 1);
     }
   };
 
   const decreasePageHandler = () => {
-    if (page >= products.length / 6 && page > 1) {
+    if (page >= products.length / 3 && page > 1) {
       setPage((prev) => prev - 1);
     }
   };
@@ -71,11 +144,11 @@ const Explore = () => {
   return (
     <>
       <Header />
-      <main className="flex my-5  h-36">
+      <main className="flex my-5 mb-10  h-36">
         <div className="w-3/12 bg-gray-300"></div>
         <div className="w-9/12 px-10">
           <div className="grid grid-cols-3 place-items-center">
-            {products.slice(page * 6 - 6, page * 6).map((prod) => (
+            {products.slice(page * 3 - 3, page * 3).map((prod) => (
               <div
                 className="w-9/12 p-4  shadow-xl rounded-lg"
                 key={prod.imageUrl}>
