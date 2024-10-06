@@ -43,6 +43,12 @@ const ShopEaseUserSchema = new mongoose.Schema(
         ref: "ShopEaseProduct",
       },
     ],
+    orders: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ShopEaseOrder",
+      },
+    ],
   },
   { timestamps: true }
 );
