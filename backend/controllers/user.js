@@ -2,6 +2,7 @@ import ShopEaseUser from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import ShopEaseCategory from "../models/category.model.js";
+import ShopEaseProduct from "../models/product.model.js";
 
 export const loginUser = async (req, res) => {
   try {
@@ -155,6 +156,6 @@ export const getAllProducts = async (req, res) => {
       res.status(404).json({ message: "Products not found" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Failed to get Products " });
+    res.status(500).json({ message: "Failed to get Products ", error });
   }
 };

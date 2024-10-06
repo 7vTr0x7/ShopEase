@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getAddress,
+  getAllProducts,
   getCart,
   getCategories,
   getMyProfile,
