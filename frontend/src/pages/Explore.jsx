@@ -1,31 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 
 import ProductCard from "../components/ProductCard";
 import FilterSection from "../components/FilterSection";
 
-const products = [
-  {
-    _id: "1",
-    name: "Apple iPhone 14 Pro Max",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1199,
-    discountPercent: 10,
-    rating: 4.8,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Smartphones",
-    },
-    availability: true,
-    description:
-      "The latest iPhone 14 Pro Max with advanced features, including A16 Bionic chip, 48MP camera system, and ProMotion display.",
-  },
-];
-
 const Explore = () => {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 6; // Dynamically handle how many items per page
+
+  const [products, setProducts] = useState([]);
+
+  const itemsPerPage = 6;
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const increasePageHandler = () => {
@@ -39,6 +23,30 @@ const Explore = () => {
       setPage((prev) => prev - 1);
     }
   };
+
+  const fetchProducts = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:4000/api/users/user/categories`,
+        {
+          credentials: "include",
+        }
+      );
+      if (!res.ok) {
+        console.log("Failed");
+        return;
+      }
+
+      const data = await res.json();
+      setProducts(data.products);
+    } catch (error) {
+      console.log(`Failed to login ${error}`);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <>

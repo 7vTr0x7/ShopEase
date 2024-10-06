@@ -17,15 +17,19 @@ export const getAllProducts = async (req, res) => {
 
 export const addProduct = async (req, res) => {
   try {
-    const product = await ShopEaseProduct.create(req.body);
+    const products = [];
+    for (let i = 0; i < req.body.length; i++) {
+      const product = await ShopEaseProduct.create(req.body[i]);
+      products.push(product);
+    }
 
-    if (product) {
-      res.json({ message: "Added successfully", product });
+    if (products.length > 0) {
+      res.json({ message: "Added successfully", products });
     } else {
-      res.status(404).json({ message: "Product not found" });
+      res.status(404).json({ message: "products not found" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Failed to add Product " });
+    res.status(500).json({ message: "Failed to add products " });
   }
 };
 

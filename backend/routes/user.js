@@ -20,6 +20,7 @@ router.get("/products/user/cart/products", isAuthenticated, getCart);
 router.get("/address/user", isAuthenticated, getAddress);
 router.get("/order/user/orders", isAuthenticated, getOrders);
 router.get("/user/categories", isAuthenticated, getCategories);
+router.get("/products/categories/user", isAuthenticated, getAllProducts);
 
 //router.route("/user/:userId").get(getUserById).post().delete() // route chaining
 
