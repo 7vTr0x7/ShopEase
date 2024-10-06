@@ -9,7 +9,9 @@ export const login = async () => {
     }
 
     const data = await res.json();
-    toast.success(data.message);
+    if (data.message) {
+      toast.success(data.message);
+    }
   } catch (error) {
     console.log(`Failed to login ${error}`);
   }
