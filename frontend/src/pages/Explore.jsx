@@ -22,6 +22,7 @@ const products = [
       "The latest iPhone 14 Pro Max with advanced features, including A16 Bionic chip, 48MP camera system, and ProMotion display.",
   },
 ];
+
 const Explore = () => {
   const [page, setPage] = useState(1);
   const itemsPerPage = 6; // Dynamically handle how many items per page
