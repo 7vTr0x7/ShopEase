@@ -85,16 +85,17 @@ export const updateOrderStatus = async (req, res) => {
 export const addCategories = async (req, res) => {
   try {
     const categories = [];
-    req.body.forEach(async (cat) => {
-      const category = await ShopEaseCategory.create(cat);
+    for (let i = 0; i < req.body.length; i++) {
+      const category = await ShopEaseCategory.create(req.body[i]);
       categories.push(category);
-    });
+    }
+
     if (categories.length > 0) {
       res.json({ message: "success", categories });
     } else {
       res.status(404).json({ message: "categories not Found" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Failed to get categories" });
+    res.status(500).json({ message: "Failed to add categories" });
   }
 };

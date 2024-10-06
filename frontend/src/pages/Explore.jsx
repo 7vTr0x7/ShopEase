@@ -27,7 +27,7 @@ const Explore = () => {
   const fetchProducts = async () => {
     try {
       const res = await fetch(
-        `http://localhost:4000/api/users/user/categories`,
+        `http://localhost:4000/api/users//products/categories/user`,
         {
           credentials: "include",
         }
@@ -53,7 +53,7 @@ const Explore = () => {
       <Header />
       <main className="flex my-5 mb-10 justify-center">
         <div className="w-3/12 bg-gray-100 p-4 shadow-md rounded-lg">
-          <FilterSection />
+          <FilterSection products={products} />
         </div>
         <div className="w-9/12 px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">

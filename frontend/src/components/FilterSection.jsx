@@ -1,39 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const products = [
-  {
-    name: "Apple iPhone 14 Pro Max",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1199,
-    discountPercent: 10,
-    rating: 4.8,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Smartphones",
-    },
-    availability: true,
-    description:
-      "The latest iPhone 14 Pro Max with advanced features, including A16 Bionic chip, 48MP camera system, and ProMotion display.",
-  },
-  {
-    name: "Samsung 65-Inch QLED 4K TV",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1299,
-    discountPercent: 15,
-    rating: 4.7,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Televisions",
-    },
-    availability: true,
-    description:
-      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
-  },
-];
-
-const FilterSection = () => {
+const FilterSection = ({ products }) => {
   const categories =
     products && products.map((prod) => prod.categories.subCategory);
 
