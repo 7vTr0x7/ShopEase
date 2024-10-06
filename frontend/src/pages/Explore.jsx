@@ -6,6 +6,7 @@ import FilterSection from "../components/FilterSection";
 
 const products = [
   {
+    _id: "1",
     name: "Apple iPhone 14 Pro Max",
     imageUrl: "https://picsum.photos/id/1012/200/200",
     price: 1199,
@@ -20,125 +21,20 @@ const products = [
     description:
       "The latest iPhone 14 Pro Max with advanced features, including A16 Bionic chip, 48MP camera system, and ProMotion display.",
   },
-  {
-    name: "Samsung 65-Inch QLED 4K TV",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1299,
-    discountPercent: 15,
-    rating: 4.7,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Televisions",
-    },
-    availability: true,
-    description:
-      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
-  },
-  {
-    name: "Samsung 65-Inch QLED 4K TV",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1299,
-    discountPercent: 15,
-    rating: 4.7,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Televisions",
-    },
-    availability: true,
-    description:
-      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
-  },
-  {
-    name: "Samsung 65-Inch QLED 4K TV",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1299,
-    discountPercent: 15,
-    rating: 4.7,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Televisions",
-    },
-    availability: true,
-    description:
-      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
-  },
-  {
-    name: "Samsung 65-Inch QLED 4K TV",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1299,
-    discountPercent: 15,
-    rating: 4.7,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Televisions",
-    },
-    availability: true,
-    description:
-      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
-  },
-  {
-    name: "Samsung 65-Inch QLED 4K TV",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1299,
-    discountPercent: 15,
-    rating: 4.7,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Televisions",
-    },
-    availability: true,
-    description:
-      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
-  },
-  {
-    name: "Samsung 65-Inch QLED 4K TV",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1299,
-    discountPercent: 15,
-    rating: 4.7,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Televisions",
-    },
-    availability: true,
-    description:
-      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
-  },
-  {
-    name: "Samsung 65-Inch QLED 4K TV",
-    imageUrl: "https://picsum.photos/id/1012/200/200",
-    price: 1299,
-    discountPercent: 15,
-    rating: 4.7,
-    reviews: 400,
-    categories: {
-      category: "Electronics",
-      subCategory: "Televisions",
-    },
-    availability: true,
-    description:
-      "Samsung's 65-inch QLED 4K TV with Quantum HDR and 120Hz refresh rate for an immersive viewing experience.",
-  },
 ];
 
 const Explore = () => {
   const [page, setPage] = useState(1);
 
   const increasePageHandler = () => {
-    if (page < products.length / 3) {
+    if (page < products.length / 6) {
       setPage((prev) => prev + 1);
     }
   };
 
   const decreasePageHandler = () => {
-    if (page >= Math.floor(products.length / 3) && page > 1) {
-      console.log(Math.floor(products.length / 3));
+    if (page >= Math.floor(products.length / 6) && page > 1) {
+      console.log(Math.floor(products.length / 6));
       setPage((prev) => prev - 1);
     }
   };
@@ -152,7 +48,7 @@ const Explore = () => {
         </div>
         <div className="w-9/12 px-10">
           <div className="grid grid-cols-3 place-items-center">
-            {products.slice(page * 3 - 3, page * 3).map((prod) => (
+            {products.slice(page * 6 - 6, page * 6).map((prod) => (
               <div
                 className="w-9/12 p-4  shadow-xl rounded-lg"
                 key={prod.imageUrl}>
@@ -161,17 +57,17 @@ const Explore = () => {
             ))}
           </div>
           {products && products.length > 0 && (
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center mt-6 text-xl font-bold">
               <button
-                className="px-4 py-2 bg-white shadow-md rounded-xl text-xl font-semibold"
+                className="px-4 py-2 bg-white shadow-md rounded-xl "
                 onClick={decreasePageHandler}>
                 -
               </button>
-              <p className="px-4 mx-4 py-2 bg-white shadow-md rounded-xl text-xl font-semibold">
+              <p className="px-4 mx-4 py-2 bg-white shadow-md rounded-xl ">
                 {page}
               </p>
               <button
-                className="px-4 py-2 bg-white shadow-md rounded-xl text-xl font-semibold"
+                className="px-4 py-2 bg-white shadow-md rounded-xl "
                 onClick={increasePageHandler}>
                 +
               </button>

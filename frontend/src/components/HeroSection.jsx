@@ -1,5 +1,6 @@
 import React from "react";
 import hero from "../images/hero-1.png";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -12,7 +13,7 @@ const HeroSection = () => {
           <p className="text-7xl font-bold">Explore The </p>
           <p className="text-7xl font-bold">Ultimate Collection</p>
           <button className="mt-8 text-2xl font-bold border px-3 py-1 border-black rounded-lg hover:text-white hover:bg-black">
-            Shop Now
+            <Link to="/explore"> Shop Now</Link>
           </button>
         </div>
       </div>
